@@ -255,19 +255,36 @@ async function runDetection(file) {
   showState("loading");
   const t0 = performance.now();
 
-  const formData = new FormData();
-  formData.append("image", file);
+  if (!window.cloudModel) {
+    console.log("Mulai load model...");
+    window.cloudModel = await tf.loadLayersModel("model/model.json");
+    console.log("Model berhasil diload");
+  }
 
-  const res = await fetch("http://127.0.0.1:5000/predict", {
-    method: "POST",
-    body: formData
-  });
+  const img = document.getElementById("previewImg");
 
-  const data = await res.json();
+  const tensor = tf.browser.fromPixels(img)
+    .resizeBilinear([224, 224])
+    .toFloat()
+    .div(255.0)
+    .expandDims(0);
+
+  const output = window.cloudModel.predict(tensor);
+  const probs = await output.data();
+
+  const predictions = CLOUD_CLASSES.map((c, i) => ({
+    class: c.name,
+    prob: probs[i]
+  })).sort((a, b) => b.prob - a.prob);
+
+  tensor.dispose();
+  output.dispose();
 
   const inferenceMs = Math.round(performance.now() - t0);
-  renderResult(data.predictions, inferenceMs);
+  renderResult(predictions, inferenceMs);
 }
+
+
 
 /* Simulasi probabilitas — hasilkan distribusi yang masuk akal */
 function simulatePredictions() {
