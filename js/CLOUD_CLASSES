@@ -16,18 +16,18 @@
    Sesuaikan dengan kelas dari model Anda.
    Urutan ini akan digunakan untuk menampilkan probabilitas. */
 const CLOUD_CLASSES = [
-  { name: "Cumulus",       label: "Awan kapas — cuaca cerah" },
-  { name: "Stratus",       label: "Lapisan kabut tinggi" },
-  { name: "Cumulonimbus",  label: "Awan badai — bahaya untuk penerbangan" },
-  { name: "Altocumulus",   label: "Awan menengah berpetak" },
-  { name: "Nimbostratus",  label: "Awan hujan terus-menerus" },
-  { name: "Cirrus",        label: "Awan tinggi tipis dari kristal es" },
-  { name: "Stratocumulus", label: "Lapisan awan rendah bergumpal" },
-  { name: "Altostratus",   label: "Lapisan awan menengah keabu-abuan" },
-  { name: "Cirrostratus",  label: "Lapisan tipis tinggi, halo matahari" },
-  { name: "Cirrocumulus",  label: "Awan tinggi kecil bergerombol" },
+  { name: "Altocumulus", label: "Awan menengah berpetak" },
+  { name: "Altostratus", label: "Awan menengah keabu-abuan" },
+  { name: "Cumulonimbus", label: "Awan badai — hujan lebat dan petir" },
+  { name: "Cirrocumulus", label: "Awan tinggi kecil bergerombol" },
+  { name: "Cirrus", label: "Awan tinggi tipis seperti serat" },
+  { name: "Cirrostratus", label: "Awan tinggi tipis merata, sering membentuk halo" },
+  { name: "Cumulus Fractus", label: "Pecahan awan cumulus" },
+  { name: "Cumulus", label: "Awan kapas — biasanya cuaca cerah" },
+  { name: "Nimbostratus", label: "Awan tebal pembawa hujan terus-menerus" },
+  { name: "Stratocumulus", label: "Awan rendah bergumpal besar" },
+  { name: "Stratus", label: "Awan rendah merata seperti kabut" }
 ];
-
 
 /* ---------- 2. Navbar: sticky on scroll ---------- */
 const navbar = document.getElementById("navbar");
